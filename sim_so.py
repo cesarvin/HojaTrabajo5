@@ -36,10 +36,9 @@ def OSProcess (nameProcess, env, process,ram):
 
     lapseTime = env.now - initTime
     times.append(lapseTime)
-    print('%s total %f' % (nameProcess, lapseTime))
     processTime = processTime + lapseTime
-
-
+    print('%s total %f' % (nameProcess, lapseTime))
+    
 # ----------------------
 #Simulacion
 env = simpy.Environment() 
@@ -49,7 +48,7 @@ times = list()
 random.seed(10)
 processTime = 0
 
-execute = 25 #numero de procesos
+execute = 250 #numero de procesos
 
 for i in range(execute):
     env.process(OSProcess('Proceso %d' % i, env, process,ram))
