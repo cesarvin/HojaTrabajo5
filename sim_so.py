@@ -25,7 +25,7 @@ def OSProcess (nameProcess, env, process,ram):
             with process.request() as OSProcess:
                 yield OSProcess
                 stateProcess = "running"
-                executeInstructions = executeInstructions - 3
+                executeInstructions = executeInstructions - 10
                 yield env.timeout(1)
                 print(nameProcess, "->", stateProcess, " -> Duration: ", env.now) 
             if executeInstructions < 1:
@@ -43,12 +43,12 @@ def OSProcess (nameProcess, env, process,ram):
 #Simulacion
 env = simpy.Environment() 
 process = simpy.Resource(env, capacity = 100)
-ram = simpy.Container(env, init=100, capacity = 100)
+ram = simpy.Container(env, init=100, capacity = 200)
 times = list()
 random.seed(10)
 processTime = 0
 
-execute = 250 #numero de procesos
+execute = 25 #numero de procesos
 
 for i in range(execute):
     env.process(OSProcess('Proceso %d' % i, env, process,ram))
